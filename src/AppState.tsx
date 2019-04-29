@@ -34,7 +34,7 @@ class AppState extends React.Component<Props, State> {
             <div className="AppState">
                 {React.Children.map(this.props.children, child => {
                     return React.cloneElement(child, {
-                        appState: this.getAppState,
+                        getAppState: this.getAppState,
                         setAppState: this.setAppState
                     });
                 })}
