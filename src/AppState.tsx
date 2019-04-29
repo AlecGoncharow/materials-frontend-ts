@@ -19,6 +19,8 @@ class AppState extends React.Component<Props, State> {
        this.state = {
 
        };
+
+       this.setAppState = this.setAppState.bind(this);
     }
 
     setAppState(newState: State) {
