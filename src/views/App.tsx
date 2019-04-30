@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../logo.svg';
-import '../App.css';
-import {InjectedChildrenProps} from "./AppState";
+import './App.css';
+import {InjectedChildrenProps} from "../store/AppState";
 
 interface AppProps extends InjectedChildrenProps{
 
@@ -20,6 +20,7 @@ class App extends React.Component<AppProps, State> {
 
 
   render() {
+      console.log(this.props);
     return (
         <div className="App">
           <header className="App-header">

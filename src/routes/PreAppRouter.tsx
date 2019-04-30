@@ -1,17 +1,21 @@
 import {BrowserRouter, Route} from "react-router-dom";
-import App from "../app/App";
+import App from "../views/App";
 import * as React from "react"
-import {InjectedChildrenProps} from "../app/AppState";
+import {InjectedChildrenProps} from "../store/AppState";
 
 interface RouterProps extends InjectedChildrenProps{
 
 }
 
-export const Router = (props: RouterProps) => {
+/*
+ * Preemptive router before entering App, passing AppState functions
+ */
+export const PreAppRouter = (props: RouterProps) => {
     console.log(props.getAppState());
+    console.log(props);
     return (
         <BrowserRouter>
-            <Route path="/" render={() => <App {...props}
+            <Route path="/" render={(routerProps) => <App {...routerProps}
                                                setAppState={props.setAppState}
                                                getAppState={props.getAppState}/>}
             />
