@@ -1,7 +1,8 @@
 import React from 'react';
-import logo from '../logo.svg';
 import './App.css';
 import {InjectedChildrenProps} from "../store/AppState";
+import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {Coverage} from "./Coverage";
 
 interface AppProps extends InjectedChildrenProps{
 
@@ -30,19 +31,23 @@ class App extends React.Component<AppProps, State> {
         return (
             <div className="App">
                 <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo"/>
-                    <p>
-                        Edit <code>src/App.tsx</code> and save to reload.
-                    </p>
-                    <a
-                        className="App-link"
-                        href="https://reactjs.org"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Learn React!
-                    </a>
+                    HEADER
                 </header>
+                <BrowserRouter>
+                    <Switch>
+                        <Route path="/coverage"
+                               render={(routerProps) => <Coverage {...routerProps}
+                                                                  setAppState={this.props.setAppState}
+                                                                  getAppState={this.props.getAppState}/>}
+                        />
+                        <Route path="/" render={(routerProps) =>
+                            <div>
+                                home
+                            </div>
+                        }
+                            />
+                    </Switch>
+                </BrowserRouter>
             </div>
         );
     }

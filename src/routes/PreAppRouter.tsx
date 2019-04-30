@@ -14,7 +14,8 @@ export const PreAppRouter = (props: RouterProps) => {
     console.log(props);
     return (
         <BrowserRouter>
-            <Route path="/" render={(routerProps) => <App {...routerProps}
+            <Route path="/"
+                   render={(routerProps) => <App {...routerProps}
                                                setAppState={props.setAppState}
                                                getAppState={props.getAppState}/>}
             />
