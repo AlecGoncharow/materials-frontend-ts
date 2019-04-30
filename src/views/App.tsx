@@ -13,33 +13,39 @@ interface State {
 
 
 class App extends React.Component<AppProps, State> {
-  constructor(props: AppProps) {
-    super(props)
-      props.setAppState({message: "hello from App"});
-  }
+    constructor(props: AppProps) {
+        super(props);
+        props.setAppState({message: "hello from App"});
+    }
 
-
-  render() {
-      console.log(this.props);
-    return (
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo"/>
-            <p>
-              Edit <code>src/App.tsx</code> and save to reload.
-            </p>
-            <a
-                className="App-link"
-                href="https://reactjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-              Learn React!
-            </a>
-          </header>
-        </div>
-    );
-  }
+    render() {
+        console.log(this.props);
+        if (this.props.getAppState().data === undefined) {
+            return (
+                <div className="App">
+                    loading data
+                </div>
+            );
+        }
+        return (
+            <div className="App">
+                <header className="App-header">
+                    <img src={logo} className="App-logo" alt="logo"/>
+                    <p>
+                        Edit <code>src/App.tsx</code> and save to reload.
+                    </p>
+                    <a
+                        className="App-link"
+                        href="https://reactjs.org"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Learn React!
+                    </a>
+                </header>
+            </div>
+        );
+    }
 }
 
 export default App;

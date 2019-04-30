@@ -11,7 +11,6 @@ interface RouterProps extends InjectedChildrenProps{
  * Preemptive router before entering App, passing AppState functions
  */
 export const PreAppRouter = (props: RouterProps) => {
-    console.log(props.getAppState());
     console.log(props);
     return (
         <BrowserRouter>
