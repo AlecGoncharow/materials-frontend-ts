@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
-import AppState from "./AppState";
+import AppState from "./app/AppState";
+import {Router} from "./routes/Router";
 
 ReactDOM.render(
     <AppState>
-        <App/>
+        {injectedProps => (
+            <Router setAppState={injectedProps.setAppState} getAppState={injectedProps.getAppState}/>
+            )}
     </AppState>,
     document.getElementById('root'));
 
