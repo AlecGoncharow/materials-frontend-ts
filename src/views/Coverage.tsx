@@ -7,7 +7,7 @@ interface Props extends InjectedChildrenProps{
 }
 
 export interface CoverageState {
-    ids: number[]
+    [index: string]: number[]
 }
 
 export class Coverage extends React.Component<Props, CoverageState> {
@@ -15,11 +15,12 @@ export class Coverage extends React.Component<Props, CoverageState> {
         super(props);
 
         this.state = {
-            ids: [],
         };
     }
 
     setCoverageState = (newState: CoverageState): void => {
+        console.log("Coverage state update:");
+        console.log(newState);
         this.setState(newState);
     };
 

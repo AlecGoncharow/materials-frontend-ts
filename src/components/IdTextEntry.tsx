@@ -1,6 +1,7 @@
 import React from "react";
 import { CoverageState } from "../views/Coverage";
 import {Button} from "@material-ui/core";
+import TextField from '@material-ui/core/TextField';
 
 interface CoverageProps {
     setCoverageState(newState: CoverageState): void;
@@ -16,7 +17,7 @@ export class IdTextEntry extends React.Component<CoverageProps, CoverageState> {
         let input = event.currentTarget.value;
         let input_arr: number[];
         input_arr = input.split(' ').map(Number);
-        this.setState({ids: input_arr});
+        this.setState({[this.props.id]: input_arr});
         console.log(this.state);
     };
 
@@ -28,15 +29,20 @@ export class IdTextEntry extends React.Component<CoverageProps, CoverageState> {
 
     render() {
         return (
-            <form>
+            <div>
                 <div>
-                    <label htmlFor={this.props.id}>{this.props.label}</label>
-                    <input type="text" id={this.props.id} onChange={this.handleChange} onKeyPress={this.handleKeyPress}/>
+                    <TextField label={this.props.label}
+                               id={this.props.id}
+                               onChange={this.handleChange}
+                               onKeyPress={this.handleKeyPress}/>
                 </div>
                 <div>
-                    <Button>GO</Button>
+                    <Button color="primary"
+                            variant="contained"
+                            size="small"
+                            onClick={() => this.props.setCoverageState(this.state)}>Set IDs</Button>
                 </div>
-            </form>
+            </div>
         )
     }
 }

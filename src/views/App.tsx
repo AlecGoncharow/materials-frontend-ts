@@ -21,7 +21,7 @@ class App extends React.Component<AppProps, State> {
 
     render() {
         console.log(this.props);
-        let loading
+        let loading;
         if (this.props.getAppState().data === undefined) {
             loading = <div className="App">
                     loading data
