@@ -21,18 +21,18 @@ class App extends React.Component<AppProps, State> {
 
     render() {
         console.log(this.props);
+        let loading
         if (this.props.getAppState().data === undefined) {
-            return (
-                <div className="App">
+            loading = <div className="App">
                     loading data
-                </div>
-            );
+                </div>;
         }
         return (
             <div className="App">
                 <header className="App-header">
                     HEADER
                 </header>
+                {loading}
                 <BrowserRouter>
                     <Switch>
                         <Route path="/coverage"
