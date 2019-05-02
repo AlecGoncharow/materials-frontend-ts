@@ -1,6 +1,7 @@
 import React from "react";
 import {InjectedChildrenProps} from "../store/AppState";
 import {IdTextEntry} from "../components/IdTextEntry";
+import {buildHierarchyData} from "../utils/BuildData";
 
 interface Props extends InjectedChildrenProps{
 
@@ -29,6 +30,13 @@ export class Coverage extends React.Component<Props, CoverageState> {
     };
 
     render() {
+        let appState = this.props.getAppState();
+        if (appState.data !== undefined && appState.acm !== undefined) {
+            for (let key in this.state) {
+                console.log(buildHierarchyData(this.state[key], appState.data.assignments, appState.acm))
+            }
+        }
+
         return (
             <div className="Coverage">
                 Coverage

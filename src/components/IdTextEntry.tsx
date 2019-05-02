@@ -18,7 +18,6 @@ export class IdTextEntry extends React.Component<CoverageProps, CoverageState> {
         let input_arr: number[];
         input_arr = input.split(' ').map(Number);
         this.setState({[this.props.id]: input_arr});
-        console.log(this.state);
     };
 
     handleKeyPress = (event: React.KeyboardEvent) => {
