@@ -57,6 +57,7 @@ export function buildHierarchyData(ids: number[],
         let cls = classifications[key];
         let value = hits[cls.id] !== undefined ? hits[cls.id] : 0;
         let label = "";
+        // root node
         if (cls.parent === undefined) {
             data.nodes.push({
                 id: cls.id,
@@ -65,6 +66,7 @@ export function buildHierarchyData(ids: number[],
                 label: label,
             });
         } else {
+            // only add nodes whose parent have some hits
             let parent = classifications[cls.parent];
             if(hits[parent.id] !== 0 && hits[parent.id] !== undefined) {
                 data.nodes.push({
