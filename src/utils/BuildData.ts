@@ -1,24 +1,22 @@
 import {AssignmentShape, ClassificationShape} from "../store/AppState";
+import {d3Link} from "../types";
 
 
 interface Hits {
     [index: string]: number
 }
 
+export interface NodeData {
+    id: string;
+    depth: number;
+    hits: number;
+    label?: string;
+}
+
 export interface NodeLinkData {
     max: number[];
-    nodes: {
-       id: string;
-       depth: number;
-       hits: number;
-       label?: string;
-    }[];
-
-    links: {
-      source: string;
-      target: string;
-      hits: number;
-    }[];
+    nodes: NodeData[];
+    links: d3Link[];
 }
 
 export function buildHierarchyData(ids: number[],
@@ -29,7 +27,7 @@ export function buildHierarchyData(ids: number[],
         return ids.includes(e.pk);
     });
 
-    // Bubble up hits from child nodes to parent
+    // Bubble up value from child nodes to parent
     for (let material of selectedMaterials) {
         let selectedCls = material.fields.classifications;
         for (let cls of selectedCls) {
@@ -66,7 +64,7 @@ export function buildHierarchyData(ids: number[],
                 label: label,
             });
         } else {
-            // only add nodes whose parent have some hits
+            // only add nodes whose parent have some value
             let parent = classifications[cls.parent];
             if(hits[parent.id] !== 0 && hits[parent.id] !== undefined) {
                 data.nodes.push({
@@ -79,7 +77,7 @@ export function buildHierarchyData(ids: number[],
                 data.links.push({
                     source: cls.id,
                     target: parent.id,
-                    hits: value,
+                    value: value,
                 });
 
                 data.max[cls.depth] = data.max[cls.depth] > value ? data.max[cls.depth] : value;
